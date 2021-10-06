@@ -5,41 +5,65 @@ class Main extends React.Component {
   render() {
     return (
       <div className="app">
-       <div className="search">
-         <input/>
-         <button> Add Car </button>
-       </div>
-       <div className="list">
-         <h3> Favorite Cars </h3>
-         <ul>
-           <li className="list-item"> Lexus IS250 </li>
-           <li className="list-item"> Infiniti Q50 </li>
-           <li className="list-item"> Maclaren </li>
-         </ul>
-       </div>
+        <App />
      </div>
     );
   }
 }
 
-class Header extends React.Component {
+class App extends React.Component {
   render() {
-    <div>
-    <h1>Hello world!</h1>
-    </div>
+    return(
+      <div>
+        <h1>Hello World!</h1> 
+        <div className="search"><Search /></div>
+        <div className="list"><List /></div>
+      </div>
+    );
+}
+}
+
+class Search extends React.Component {
+  render() {
+    return(
+      <div>
+        <input/>
+        <button> Add Car </button>
+      </div>
+    );
+  }
+
+}
+
+class List extends React.Component {
+  render() {
+    return(
+      <div>
+        <h3> Favorite Cars </h3>
+        <ul>
+          <li className="list-item"> Lexus IS250 </li>
+          <li className="list-item"> Infiniti Q50 </li>
+          <li className="list-item"> Maclaren </li>
+        </ul>
+      </div>
+    );
   }
 }
 
-class AddCar extends React.Component {
+class ListItem extends React.Component {
   render() {
-
+    return(
+      <div>
+        <h3> Favorite Cars </h3>
+        <ul>
+          <li className="list-item"> Lexus IS250 </li>
+          <li className="list-item"> Infiniti Q50 </li>
+          <li className="list-item"> Maclaren </li>
+        </ul>
+      </div>
+    );
   }
-
 }
 
-class FavoriteCars extends React.Component {
-  render() {
-
-  }
-}
+//================================================================
 ReactDOM.render(<Main />, document.getElementById('root'));
