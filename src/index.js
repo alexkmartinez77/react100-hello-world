@@ -12,6 +12,14 @@ class Main extends React.Component {
 }
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      list: ['Lexus IS250', 'Infiniti Q50', 'Maclaren']
+    };
+
+  }
+
   render() {
     return(
       <div>
@@ -20,7 +28,7 @@ class App extends React.Component {
         <div className="list"><List /></div>
       </div>
     );
-}
+  }
 }
 
 class Search extends React.Component {
