@@ -1,17 +1,45 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+class Main extends React.Component {
+  render() {
+    return (
+      <div className="app">
+       <div className="search">
+         <input/>
+         <button> Add Car </button>
+       </div>
+       <div className="list">
+         <h3> Favorite Cars </h3>
+         <ul>
+           <li className="list-item"> Lexus IS250 </li>
+           <li className="list-item"> Infiniti Q50 </li>
+           <li className="list-item"> Maclaren </li>
+         </ul>
+       </div>
+     </div>
+    );
+  }
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+class Header extends React.Component {
+  render() {
+    <div>
+    <h1>Hello world!</h1>
+    </div>
+  }
+}
+
+class AddCar extends React.Component {
+  render() {
+
+  }
+
+}
+
+class FavoriteCars extends React.Component {
+  render() {
+
+  }
+}
+ReactDOM.render(<Main />, document.getElementById('root'));
