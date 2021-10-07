@@ -19,13 +19,12 @@ class App extends React.Component {
     };
 
   }
-
   render() {
     return(
       <div>
         <h1>Hello World!</h1> 
         <div className="search"><Search /></div>
-        <div className="list"><List /></div>
+        <div className="list"><List list={this.state.list}/></div>
       </div>
     );
   }
@@ -44,14 +43,21 @@ class Search extends React.Component {
 }
 
 class List extends React.Component {
+
+  
+  renderListItem(i){
+      return(
+        <ListItem carName={this.props.list[i]}/>
+      );
+  }
   render() {
     return(
       <div>
         <h3> Favorite Cars </h3>
         <ul>
-          <li className="list-item"> Lexus IS250 </li>
-          <li className="list-item"> Infiniti Q50 </li>
-          <li className="list-item"> Maclaren </li>
+          {this.renderListItem(0)}
+          {this.renderListItem(1)}
+          {this.renderListItem(2)}
         </ul>
       </div>
     );
@@ -61,14 +67,7 @@ class List extends React.Component {
 class ListItem extends React.Component {
   render() {
     return(
-      <div>
-        <h3> Favorite Cars </h3>
-        <ul>
-          <li className="list-item"> Lexus IS250 </li>
-          <li className="list-item"> Infiniti Q50 </li>
-          <li className="list-item"> Maclaren </li>
-        </ul>
-      </div>
+      <li className="list-item"> {this.props.carName} </li>
     );
   }
 }
