@@ -17,13 +17,16 @@ class App extends React.Component {
     this.state = {
       list: ['Lexus IS250', 'Infiniti Q50', 'Maclaren']
     };
+  }
 
+  addCar(incomingCar){
+    const listCopy = this.state.list;
   }
   render() {
     return(
       <div>
         <h1>Hello World!</h1> 
-        <div className="search"><Search /></div>
+        <div className="search"><Search onClick={() => this.addCare(newCar)}/></div>
         <div className="list"><List list={this.state.list}/></div>
       </div>
     );
@@ -43,21 +46,20 @@ class Search extends React.Component {
 }
 
 class List extends React.Component {
-
-  
-  renderListItem(i){
-      return(
-        <ListItem carName={this.props.list[i]}/>
-      );
-  }
   render() {
+      const carArray = this.props.list;
+      const cars = carArray.map((car, i) => {
+        return (
+        <ListItem carName={car} key={i}/>
+        )
+      });
+      console.log(cars);
+      
     return(
       <div>
         <h3> Favorite Cars </h3>
         <ul>
-          {this.renderListItem(0)}
-          {this.renderListItem(1)}
-          {this.renderListItem(2)}
+          {cars}
         </ul>
       </div>
     );
