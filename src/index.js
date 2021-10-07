@@ -1,32 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class Main extends React.Component {
-  render() {
-    return (
-      <div className="app">
-        <App />
-     </div>
-    );
-  }
-}
 
-class App extends React.Component {
+class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       list: ['Lexus IS250', 'Infiniti Q50', 'Maclaren']
     };
+    /*this.addCar = this.addCar.bind(this);*/
   }
 
   addCar(incomingCar){
-    const listCopy = this.state.list;
+    const listCopy = this.state.list.slice();
+    this.setState({
+      list: listCopy.concat([incomingCar]),
+    });
   }
   render() {
     return(
-      <div>
+      <div className="app">
         <h1>Hello World!</h1> 
-        <div className="search"><Search onClick={() => this.addCare(newCar)}/></div>
+        <div className="search"><Search onClick={(i) => this.addCar(i)}/></div>
         <div className="list"><List list={this.state.list}/></div>
       </div>
     );
@@ -34,11 +29,25 @@ class App extends React.Component {
 }
 
 class Search extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      inputValue: '',
+    };
+    this.updateInputValue = this.updateInputValue.bind(this);
+  }
+
+  updateInputValue(evt) {
+    this.setState({
+      inputValue: evt.target.value,
+    });
+  }
+
   render() {
     return(
       <div>
-        <input/>
-        <button> Add Car </button>
+        <input value={this.state.inputValue} onChange={this.updateInputValue}/>
+        <button onClick={() => this.props.onClick(this.state.inputValue)}> Add Car </button>
       </div>
     );
   }
