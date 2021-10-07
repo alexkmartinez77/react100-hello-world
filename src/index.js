@@ -18,11 +18,15 @@ class Main extends React.Component {
   }
 
   addCar(){
-    const listCopy = this.state.list.slice();
-    this.setState({
-      list: listCopy.concat(this.state.input),
-      input: ''
-    });
+    if(this.state.input !== ''){
+      const listCopy = this.state.list.slice();
+      this.setState({
+        list: listCopy.concat(this.state.input),
+        input: '',
+      });
+    } else {
+      return;
+    }
   }
 
   render() {
@@ -37,20 +41,6 @@ class Main extends React.Component {
 }
 
 class Search extends React.Component {
-  /*constructor(props){
-    super(props);
-    this.state = {
-      inputValue: '',
-    };
-    this.updateInputValue = this.updateInputValue.bind(this);
-  }
-
-  updateInputValue(evt) {
-    this.setState({
-      inputValue: evt.target.value,
-    });
-  }
-*/
   render() {
     return(
       <div>
@@ -59,7 +49,6 @@ class Search extends React.Component {
       </div>
     );
   }
-
 }
 
 class List extends React.Component {
@@ -70,7 +59,7 @@ class List extends React.Component {
         <ListItem carName={car} key={i}/>
         )
       });
-      
+
     return(
       <div>
         <h3> Favorite Cars </h3>
