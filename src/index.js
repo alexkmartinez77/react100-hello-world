@@ -6,22 +6,30 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: ['Lexus IS250', 'Infiniti Q50', 'Maclaren']
+      list: ['Lexus IS250', 'Infiniti Q50', 'Maclaren'],
+      input: '',
     };
-    /*this.addCar = this.addCar.bind(this);*/
   }
 
-  addCar(incomingCar){
-    const listCopy = this.state.list.slice();
+  updateInputValue(evt) {
     this.setState({
-      list: listCopy.concat([incomingCar]),
+      input: evt.target.value,
     });
   }
+
+  addCar(){
+    const listCopy = this.state.list.slice();
+    this.setState({
+      list: listCopy.concat(this.state.input),
+      input: ''
+    });
+  }
+
   render() {
     return(
       <div className="app">
         <h1>Hello World!</h1> 
-        <div className="search"><Search onClick={(i) => this.addCar(i)}/></div>
+        <div className="search"><Search initialInput={this.state.input} onClick={() => this.addCar()} updateInput={(e) => this.updateInputValue(e)}/></div>
         <div className="list"><List list={this.state.list}/></div>
       </div>
     );
@@ -29,7 +37,7 @@ class Main extends React.Component {
 }
 
 class Search extends React.Component {
-  constructor(props){
+  /*constructor(props){
     super(props);
     this.state = {
       inputValue: '',
@@ -42,12 +50,12 @@ class Search extends React.Component {
       inputValue: evt.target.value,
     });
   }
-
+*/
   render() {
     return(
       <div>
-        <input value={this.state.inputValue} onChange={this.updateInputValue}/>
-        <button onClick={() => this.props.onClick(this.state.inputValue)}> Add Car </button>
+        <input value={this.props.initialInput} onChange={this.props.updateInput}/>
+        <button onClick={() => this.props.onClick()}> Add Car </button>
       </div>
     );
   }
@@ -62,7 +70,6 @@ class List extends React.Component {
         <ListItem carName={car} key={i}/>
         )
       });
-      console.log(cars);
       
     return(
       <div>
